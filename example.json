@@ -1,0 +1,45 @@
+{
+    "coins": [{
+        "name": "Bitcoin",
+        "slug": "Bitcoin",
+        "symbol": "BTC",
+        "holding": "0.2515943"
+    },
+    {
+        "name": "Ethereum",
+        "slug": "ethereum",
+        "symbol": "ETH",
+        "holding": "3.4206"
+    },
+    {
+        "name": "Litecoin",
+        "slug": "litecoin",
+        "symbol": "LTC",
+        "holding": "20.4777"
+    },
+    {
+        "name": "Polkadot",
+        "slug": "polkadot-new",
+        "symbol": "DOT",
+        "holding": "27.6454"
+    },
+    {
+        "name": "Solana",
+        "slug": "solana",
+        "symbol": "SOL",
+        "holding": "2.5237"
+    },
+    {
+        "name": "Bitcoin Cash",
+        "slug": "bitcoin-cash",
+        "symbol": "BCH",
+        "holding": "0.69040245"
+    },
+    {
+        "name": "Bitcoin Gold",
+        "slug": "bitcoin-gold",
+        "symbol": "BTG",
+        "holding": "0.49876773"        
+    }
+]
+}
