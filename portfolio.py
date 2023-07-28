@@ -16,7 +16,11 @@ def get_coin_avg(coin: dict):
             cnt += 1
             total += mp['price']
 
-    avg = total / cnt
+    try:
+        avg = total / cnt
+    except ZeroDivisionError:
+        return 0, 0, 0
+
     holding_value = avg * float(coin['holding'])
     return avg, cnt, holding_value
 
@@ -32,11 +36,12 @@ def main():
     total = 0
     for coin in data['coins']:
         avg, cnt, holding_value = get_coin_avg(coin)
-        total += holding_value
-        print(f"{coin['name']} average price over {cnt} exchanges: {avg}, holding in USD: {holding_value:.2f}")
+        if cnt != 0:
+            total += holding_value
+            print(f"{coin['name']} average price over {cnt} exchanges: {avg}, holding in USD: {holding_value:.2f}")
     
-    zar_amount = cr.convert('USD', 'ZAR', total)
     print(f"Total in USD: {total:.2f}")
+    zar_amount = cr.convert('USD', 'ZAR', total)
     print(f"Total in ZAR: {zar_amount:.2f}")
 
 
