@@ -18,6 +18,12 @@
         "holding": "20.4777"
     },
     {
+        "name": "Dogecoin",
+        "slug": "dogecoin",
+        "symbol": "DOGE",
+        "holding": "7019.64895419"        
+    },
+    {
         "name": "Polkadot",
         "slug": "polkadot-new",
         "symbol": "DOT",
