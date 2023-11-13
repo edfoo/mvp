@@ -1,7 +1,8 @@
 import requests
 import json
 import argparse
-from forex_python.converter import CurrencyRates
+from forex_python.converter import CurrencyRates, RatesNotAvailableError
+from googlesearch import search
 
 def get_coin_avg(coin: dict):
     slug = coin['slug']
@@ -41,9 +42,13 @@ def main():
             print(f"{coin['name']} average price over {cnt} exchanges: {avg}, holding in USD: {holding_value:.2f}")
     
     print(f"Total in USD: {total:.2f}")
-    zar_amount = cr.convert('USD', 'ZAR', total)
-    print(f"Total in ZAR: {zar_amount:.2f}")
-
+    try:
+        zar_amount = cr.convert('USD', 'ZAR', total)
+        print(f"Total in ZAR: {zar_amount:.2f}")
+    except RatesNotAvailableError:
+        print("python-forex converter not available. Googling... ")
+        for res in search(f"{total}USD in ZAR", num_results=1):
+            print(res)
 
 if __name__ == '__main__':
     main()
