@@ -3,6 +3,7 @@ import json
 import argparse
 from forex_python.converter import CurrencyRates, RatesNotAvailableError
 from googlesearch import search
+from requests.exceptions import SSLError
 
 def get_coin_avg(coin: dict):
     slug = coin['slug']
@@ -45,10 +46,11 @@ def main():
     try:
         zar_amount = cr.convert('USD', 'ZAR', total)
         print(f"Total in ZAR: {zar_amount:.2f}")
-    except RatesNotAvailableError:
+    except (RatesNotAvailableError, SSLError):
         print("python-forex converter not available. Googling... ")
-        for res in search(f"{total}USD in ZAR", num_results=1):
-            print(res)
+        for r in search(f"{total} USD in ZAR", num_results=1, advanced=True):
+            print("huh")
+            print(r)
 
 if __name__ == '__main__':
     main()
