@@ -51,6 +51,8 @@ def main():
         for r in search(f"{total} USD in ZAR", num_results=1, advanced=True):
             print("huh")
             print(r)
+    except Exception as e:
+        print(f"Error: {e}")
 
 if __name__ == '__main__':
     main()
