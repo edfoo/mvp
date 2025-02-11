@@ -12,6 +12,12 @@
         "holding": "3.4206"
     },
     {
+        "name": "Ripple",
+        "slug": "ripple",
+        "symbol": "XRP",
+        "holding": "652.064"
+    },
+    {
         "name": "Litecoin",
         "slug": "litecoin",
         "symbol": "LTC",
