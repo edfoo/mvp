@@ -35,6 +35,7 @@ def get_coin_avg(coin: dict):
         holding_value = avg * float(coin['holding'])
         return avg, cnt, holding_value
     else:
+        print(f"Failed to get {slug} data.")
         return None, None, None
 
 def main():
@@ -50,7 +51,7 @@ def main():
     for coin in data['coins']:
         avg, cnt, holding_value = get_coin_avg(coin)
         if all(item is None for item in [avg, cnt, holding_value]):
-            break
+            continue
         if cnt != 0:
             total += holding_value
             print(f"{coin['name']} average price over {cnt} exchanges: {avg}, holding in USD: {holding_value:.2f}")
