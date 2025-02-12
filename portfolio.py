@@ -8,28 +8,34 @@ from requests.exceptions import SSLError
 def get_coin_avg(coin: dict):
     slug = coin['slug']
     base_url = f"https://api.coinmarketcap.com/data-api/v3/cryptocurrency/market-pairs/latest?slug={slug}&start=1&limit=100&category=spot&centerType=all&sort=cmc_rank_advanced"
-    #  print(f"{base_url}")
     r = requests.get(base_url, headers={'Cache-Control': 'no-cache'})
+    data = None
+
     try:
         r.raise_for_status()
-        data = r.json()
     except requests.exceptions.HTTPError as e:
         print(f"Timeout getting {slug} data: {e}")
+    else:
+        data = r.json()
 
     cnt = 0
     total = 0
-    for mp in data['data']['marketPairs']:
-        if mp['marketPair'] == f"{data['data']['symbol']}/USD":
-            cnt += 1
-            total += mp['price']
+    # Site returns an error code if e.g. it's too busy.
+    if data['status']['error_code'] == "0":
+        for mp in data['data']['marketPairs']:
+            if mp['marketPair'] == f"{data['data']['symbol']}/USD":
+                cnt += 1
+                total += mp['price']
 
-    try:
-        avg = total / cnt
-    except ZeroDivisionError:
-        return 0, 0, 0
+        try:
+            avg = total / cnt
+        except ZeroDivisionError:
+            return 0, 0, 0
 
-    holding_value = avg * float(coin['holding'])
-    return avg, cnt, holding_value
+        holding_value = avg * float(coin['holding'])
+        return avg, cnt, holding_value
+    else:
+        return None, None, None
 
 def main():
 
@@ -43,6 +49,8 @@ def main():
     total = 0
     for coin in data['coins']:
         avg, cnt, holding_value = get_coin_avg(coin)
+        if all(item is None for item in [avg, cnt, holding_value]):
+            break
         if cnt != 0:
             total += holding_value
             print(f"{coin['name']} average price over {cnt} exchanges: {avg}, holding in USD: {holding_value:.2f}")
