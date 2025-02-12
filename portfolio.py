@@ -9,10 +9,11 @@ def get_coin_avg(coin: dict):
     slug = coin['slug']
     base_url = f"https://api.coinmarketcap.com/data-api/v3/cryptocurrency/market-pairs/latest?slug={slug}&start=1&limit=100&category=spot&centerType=all&sort=cmc_rank_advanced"
     #  print(f"{base_url}")
+    r = requests.get(base_url, headers={'Cache-Control': 'no-cache'})
     try:
-        r = requests.get(base_url, headers={'Cache-Control': 'no-cache'})   
+        r.raise_for_status()
         data = r.json()
-    except TimeoutError as e:
+    except requests.exceptions.HTTPError as e:
         print(f"Timeout getting {slug} data: {e}")
 
     cnt = 0
