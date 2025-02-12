@@ -8,8 +8,12 @@ from requests.exceptions import SSLError
 def get_coin_avg(coin: dict):
     slug = coin['slug']
     base_url = f"https://api.coinmarketcap.com/data-api/v3/cryptocurrency/market-pairs/latest?slug={slug}&start=1&limit=100&category=spot&centerType=all&sort=cmc_rank_advanced"
-    r = requests.get(base_url, headers={'Cache-Control': 'no-cache'})   
-    data = r.json()
+    print(f"{base_url}")
+    try:
+        r = requests.get(base_url, headers={'Cache-Control': 'no-cache'})   
+        data = r.json()
+    except TimeoutError as e:
+        print(f"Timeout getting {slug} data: {e}")
 
     cnt = 0
     total = 0
