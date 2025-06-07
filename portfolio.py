@@ -35,7 +35,7 @@ def get_coin_avg(coin: dict):
         holding_value = avg * float(coin['holding'])
         return avg, cnt, holding_value
     else:
-        print(f"Failed to get {slug} data.")
+        print(f"{slug}: failed to get data.")
         return None, None, None
 
 def main():
