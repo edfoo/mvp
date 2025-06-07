@@ -3,25 +3,25 @@
         "name": "Bitcoin",
         "slug": "Bitcoin",
         "symbol": "BTC",
-        "holding": "0.2515943"
+        "holding": "0.25403076"
     },
     {
         "name": "Ethereum",
         "slug": "ethereum",
         "symbol": "ETH",
-        "holding": "3.4206"
+        "holding": "3.4206392"
     },
     {
         "name": "Ripple",
         "slug": "ripple",
         "symbol": "XRP",
-        "holding": "652.064"
+        "holding": "1092.24"
     },
     {
         "name": "Litecoin",
         "slug": "litecoin",
         "symbol": "LTC",
-        "holding": "20.4777"
+        "holding": "4.472201"
     },
     {
         "name": "Dogecoin",
@@ -33,13 +33,13 @@
         "name": "Polkadot",
         "slug": "polkadot-new",
         "symbol": "DOT",
-        "holding": "27.6454"
+        "holding": "27.64539817"
     },
     {
         "name": "Solana",
         "slug": "solana",
         "symbol": "SOL",
-        "holding": "2.5237"
+        "holding": "2.51871"
     },
     {
         "name": "Bitcoin Cash",
